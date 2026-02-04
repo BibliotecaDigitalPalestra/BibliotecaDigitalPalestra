@@ -1,69 +1,86 @@
+<!-- colecciones.html (LISTADO DE COLECCIONES) -->
 <!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Colecciones · Internet Organizado Total</title>
-
-  <!-- CSS (ruta correcta para GitHub Pages con subcarpeta) -->
-  <link rel="stylesheet" href="/BibliotecaDigitalPalestra/styles.css" />
+  <title>Internet Organizado Total — Colecciones</title>
+  <link rel="stylesheet" href="styles-site.css" />
 </head>
+
 <body>
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar__wrap">
+      <a class="brand" href="index2.html" aria-label="Volver al inicio">
+        <img class="brand__logo" src="assets/Logo.jpg" alt="Logo IOT" />
+        <div class="brand__text">
+          <div class="brand__kicker">Biblioteca Multimedia</div>
+          <div class="brand__name">Internet Organizado Total</div>
+        </div>
+      </a>
 
-<header class="topbar">
-  <a href="index.html">
-    <img src="assets/Logo.jpg" class="logo" alt="Biblioteca Digital Palestra">
-  </a>
-  <div class="brand">
-    <div class="kicker">Biblioteca Multimedia</div>
-    <h1>Internet Organizado Total</h1>
-  </div>
-</header>
+      <nav class="nav" aria-label="Navegación">
+        <a href="colecciones.html" aria-current="page">Colecciones</a>
+        <a href="index2.html#autores">Autores</a>
+        <a href="index2.html#apoya">Apoya</a>
+      </nav>
 
-<main class="wrap">
-  <h2>Colecciones</h2>
-  <p>Explora las colecciones curatoriales de la biblioteca.</p>
+      <a class="btn btn--primary topbar__cta" href="index2.html">Inicio</a>
+    </div>
+  </header>
 
-  <section class="collections-grid">
+  <main class="page">
+    <section class="wrap">
+      <h1 class="page__title">Colecciones</h1>
+      <p class="page__subtitle">Explora las colecciones curatoriales de la biblioteca.</p>
 
-    <a class="collection-card"
-       href="coleccion-patrimonio.html"
-       style="--bg:linear-gradient(135deg,#19566d,#0f2f3d);">
-      <span class="collection-title">Patrimonio Cuencano</span>
-    </a>
+      <!-- (Opcional) buscador simple -->
+      <div class="search">
+        <input class="search__input" type="search" placeholder="Buscar colecciones…" aria-label="Buscar colecciones" />
+      </div>
 
-    <a class="collection-card"
-       href="coleccion-autores.html"
-       style="--bg:linear-gradient(135deg,#555,#333);">
-      <span class="collection-title">Autores y Ensayo</span>
-    </a>
+      <!-- GRID -->
+      <section class="collections-grid" aria-label="Listado de colecciones">
+        <!-- Card: cambia background-image y enlaces -->
+        <a class="collection-card" id="guia" href="#" style="background-image:url('img/coleccion-guia.jpg')">
+          <span class="collection-title">Colección Guía de uso</span>
+        </a>
 
-    <a class="collection-card"
-       href="coleccion-educacion.html"
-       style="--bg:linear-gradient(135deg,#6b7280,#374151);">
-      <span class="collection-title">Educación y Escuelas</span>
-    </a>
+        <a class="collection-card" id="misterio" href="#" style="background-image:url('img/coleccion-misterio.jpg')">
+          <span class="collection-title">Libros de Misterio</span>
+        </a>
 
-    <a class="collection-card"
-       href="coleccion-revistas.html"
-       style="--bg:linear-gradient(135deg,#4b5563,#1f2937);">
-      <span class="collection-title">Revistas y Periódicos</span>
-    </a>
+        <a class="collection-card" id="musica" href="#" style="background-image:url('img/coleccion-musica.jpg')">
+          <span class="collection-title">Música y Audio</span>
+        </a>
 
-    <a class="collection-card"
-       href="coleccion-arte.html"
-       style="--bg:linear-gradient(135deg,#7c6f64,#3f3a36);">
-      <span class="collection-title">Arte y Fotografía</span>
-    </a>
+        <a class="collection-card" href="#" style="background-image:url('img/coleccion-arte.jpg')">
+          <span class="collection-title">Arte y Fotografía</span>
+        </a>
 
-    <a class="collection-card"
-       href="coleccion-musica.html"
-       style="--bg:linear-gradient(135deg,#3b5d73,#1e3a4c);">
-      <span class="collection-title">Música y Audio</span>
-    </a>
+        <a class="collection-card" href="#" style="background-image:url('img/coleccion-educacion.jpg')">
+          <span class="collection-title">Educación y Escuelas</span>
+        </a>
 
-  </section>
-</main>
+        <a class="collection-card" href="#" style="background-image:url('img/coleccion-revistas.jpg')">
+          <span class="collection-title">Revistas y Periódicos</span>
+        </a>
+      </section>
+    </section>
 
+    <footer class="footer footer--light">
+      <div class="wrap footer__grid">
+        <div class="footer__card footer__card--light">
+          <strong>Notas</strong>
+          <p class="footer__text footer__text--light">Aquí puedes colocar categorías, criterios curatoriales, etc.</p>
+        </div>
+        <div class="footer__card footer__card--light">
+          <strong>Apoya</strong>
+          <p class="footer__text footer__text--light">Donaciones y suscripción para sostener el archivo.</p>
+        </div>
+      </div>
+    </footer>
+  </main>
 </body>
 </html>
