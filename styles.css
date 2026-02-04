@@ -1,52 +1,59 @@
-/* styles-home.css (HOME) */
+/* styles.css */
+
+/* =========================
+   BASE (tu CSS) + ajustes
+   ========================= */
 :root{
-  --max: 980px;
-  --padX: 20px;
+  --bg:#f5fafc;                /* (ya no se usa como fondo principal de home) */
+  --ink:#1b232b;
+  --muted:#5b6774;
+  --line:#e3edf2;
 
-  --bgTop: #0c2b55;
-  --bgBottom: #081f3d;
+  /* Nuevos tokens para home oscuro */
+  --home-top:#0c2b55;
+  --home-bottom:#081f3d;
 
-  --text: #eaf2ff;
-  --muted: rgba(234,242,255,.78);
+  --home-text:#eaf2ff;
+  --home-muted:rgba(234,242,255,.78);
 
-  --card: rgba(255,255,255,.12);
-  --cardLine: rgba(255,255,255,.18);
-  --shadow: 0 18px 44px rgba(0,0,0,.25);
-
-  --cta: #0b5cff;
-  --ctaHover: #094fda;
+  --cta:#0b5cff;
+  --cta-hover:#094fda;
 }
 
 *{ box-sizing:border-box; }
 html, body{ height:100%; }
 body{
   margin:0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  line-height: 1.5;
-  color: var(--text);
-}
-
-/* Fondo general (sin franja blanca) */
-.home{
-  background: linear-gradient(180deg, var(--bgTop) 0%, var(--bgTop) 45%, var(--bgBottom) 100%);
-  min-height: 200vh; /* quítalo cuando agregues secciones reales */
+  font-family:system-ui, Arial, sans-serif;
+  color:var(--ink);
+  background: var(--bg);
 }
 
 /* Contenedor */
-.wrap{
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 28px var(--padX);
+.wrap{ max-width:980px; margin:0 auto; padding:28px 20px; }
+
+/* =========================
+   HOME: fondo oscuro continuo (sin franja blanca)
+   ========================= */
+.home{
+  min-height: 200vh; /* solo para probar el degradado; quítalo cuando ya tengas más contenido */
+  background: linear-gradient(
+    180deg,
+    var(--home-top) 0%,
+    var(--home-top) 45%,
+    var(--home-bottom) 100%
+  );
+  color: var(--home-text);
 }
 
-/* Fondo opcional con parallax (actívalo con imagen cuando quieras) */
+/* Fondo opcional con parallax */
 .bg-layer{
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
 
-  /* Ejemplo:
+  /* Activa cuando tengas imagen:
      background-image:url("assets/fondo.jpg");
   */
   background-size: cover;
@@ -56,125 +63,138 @@ body{
   transition: opacity 200ms ease;
 }
 
-/* HERO centrado */
-.hero{
-  min-height: calc(100vh - 56px);
+/* =========================
+   HERO centrado
+   ========================= */
+.hero-home{
+  min-height: calc(100vh - 56px); /* deja algo de aire arriba/abajo */
   display: grid;
   place-items: center;
   text-align: center;
   padding-top: 56px;
-  padding-bottom: 10px;
+  padding-bottom: 24px;
 }
 
-.hero__logo{
-  width: min(280px, 58vw);
+.hero-logo{
+  width: min(280px, 55vw);
   height: auto;
   display: block;
-  margin: 0 auto 14px;
+  margin: 0 auto 16px;
   filter: drop-shadow(0 12px 24px rgba(0,0,0,.25));
 }
 
-.hero__title{
+.hero-title{
   margin: 0 0 10px;
   font-size: clamp(28px, 4vw, 44px);
   letter-spacing: -0.02em;
   color: #fff;
 }
 
-.hero__subtitle{
+.hero-subtitle{
   margin: 0 auto 22px;
   max-width: 52ch;
+  color: var(--home-muted);
   font-size: clamp(14px, 1.6vw, 18px);
-  color: var(--muted);
 }
 
-/* Botón */
+/* CTA usa tu .btn (se mantiene), pero la afinamos para home */
 .btn{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 18px;
-  border-radius: 999px;
-  font-weight: 800;
-  text-decoration: none;
-  border: 0;
-  cursor: pointer;
-  transition: transform 120ms ease, background 120ms ease, box-shadow 120ms ease;
-}
-.btn--primary{
+  display:inline-block;
+  padding:12px 16px;
+  border-radius:999px;
   background: var(--cta);
-  color: #fff;
+  color:#fff;
+  text-decoration:none;
+  font-weight:800;
   box-shadow: 0 16px 30px rgba(11,92,255,.25);
+  transition: transform .12s ease, background .12s ease, box-shadow .12s ease;
 }
-.btn--primary:hover{
-  background: var(--ctaHover);
+.btn:hover{
+  background: var(--cta-hover);
   transform: translateY(-1px);
   box-shadow: 0 20px 36px rgba(11,92,255,.28);
 }
-.btn--primary:active{ transform: translateY(0); }
+.btn:active{ transform: translateY(0); }
 
-/* Tarjeta glass */
-.glass{
+.hero-cta{ margin-top: 2px; }
+
+/* =========================
+   Card “glass” para sección sobre (legible en fondo oscuro)
+   ========================= */
+.glass-card{
   margin-top: 24px;
-  padding: 22px 20px;
   border-radius: 20px;
-  background: var(--card);
-  border: 1px solid var(--cardLine);
+  padding: 22px 20px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.18);
   backdrop-filter: blur(10px);
-  box-shadow: var(--shadow);
-}
-.glass__title{
-  margin: 0 0 10px;
-  font-size: clamp(18px, 2.2vw, 24px);
-  color: #fff;
-}
-.glass__text{
-  margin: 0;
-  color: rgba(234,242,255,.86);
+  box-shadow: 0 18px 44px rgba(0,0,0,.25);
 }
 
-/* Footer */
-.footer{
-  padding-top: 14px;
-  padding-bottom: 72px;
+.glass-card h2{
+  margin:0 0 10px;
+  font-size: clamp(18px, 2.2vw, 24px);
+  color:#fff;
 }
-.footer__grid{
-  display: grid;
-  gap: 14px;
-  grid-template-columns: 1fr;
+.glass-card p{
+  margin:0;
+  color: rgba(234,242,255,.86);
+  line-height: 1.55;
 }
-@media (min-width: 820px){
-  .footer__grid{ grid-template-columns: 1.2fr .8fr; }
+
+/* =========================
+   Footer (reutiliza tu footer, adaptado a home)
+   ========================= */
+.site-footer{
+  padding-top: 12px;
+  padding-bottom: 64px;
 }
-.footer__card{
+
+footer{
+  color: rgba(255,255,255,.82);
+}
+
+.footer-card{
   border-radius: 18px;
   padding: 16px 18px;
   background: rgba(255,255,255,.08);
   border: 1px solid rgba(255,255,255,.16);
 }
-.footer__text{
-  margin: 8px 0 0;
-  color: rgba(234,242,255,.82);
+
+.footer-grid{
+  display:grid;
+  gap:14px;
+  grid-template-columns:1fr;
+}
+@media (min-width: 820px){
+  .footer-grid{ grid-template-columns: 1.2fr .8fr; }
 }
 
-/* Pills */
-.pills{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 10px;
+.sponsors{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:10px;
 }
 .pill{
-  padding: 8px 10px;
-  border-radius: 999px;
+  padding:8px 10px;
+  border-radius:999px;
   background: rgba(255,255,255,.10);
   border: 1px solid rgba(255,255,255,.14);
   font-size: 13px;
-  color: rgba(234,242,255,.92);
+  color: rgba(255,255,255,.9);
 }
 
-/* Responsive pequeño */
+/* =========================
+   (Tu CSS existente para colecciones/carrusel puede quedarse en index 2.html)
+   Si lo usas aquí también, no pasa nada, pero evita duplicar variables :root.
+   ========================= */
+
+
+/* =========================
+   RESPONSIVE básico
+   ========================= */
 @media (max-width: 560px){
-  :root{ --padX: 16px; }
-  .hero__logo{ width: min(240px, 70vw); }
+  .wrap{ padding:22px 16px; }
+  .hero-logo{ width: min(240px, 70vw); }
 }
