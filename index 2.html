@@ -33,4 +33,93 @@
     </section>
   </main>
 </body>
+  <footer>
+    <!-- === Carrusel de Colecciones (HTML) === -->
+<section class="collections" aria-label="Colecciones">
+  <div class="collections__header">
+    <h2 class="collections__title">Colecciones</h2>
+
+    <div class="collections__controls">
+      <button class="carousel-btn" type="button" data-dir="-1" aria-label="Anterior">
+        ‹
+      </button>
+      <button class="carousel-btn" type="button" data-dir="1" aria-label="Siguiente">
+        ›
+      </button>
+    </div>
+  </div>
+
+  <div class="carousel" role="region" aria-roledescription="carrusel">
+    <div class="carousel__track" id="collectionsTrack">
+      <!-- Card 1 -->
+      <a class="card" href="#" aria-label="Ir a Guía de uso">
+        <img
+          class="card__img"
+          src="img/coleccion-guia.jpg"
+          alt="Guía de uso"
+          loading="lazy"
+        />
+        <div class="card__overlay">
+          <span class="card__kicker">Colección</span>
+          <span class="card__title">Guía de uso</span>
+        </div>
+      </a>
+
+      <!-- Card 2 -->
+      <a class="card" href="#" aria-label="Ir a Libros de Misterio">
+        <img
+          class="card__img"
+          src="img/coleccion-misterio.jpg"
+          alt="Libros de Misterio"
+          loading="lazy"
+        />
+        <div class="card__overlay">
+          <span class="card__kicker">Colección</span>
+          <span class="card__title">Libros de Misterio</span>
+        </div>
+      </a>
+
+      <!-- Card 3 -->
+      <a class="card" href="#" aria-label="Ir a Colección X">
+        <img
+          class="card__img"
+          src="img/coleccion-3.jpg"
+          alt="Colección X"
+          loading="lazy"
+        />
+        <div class="card__overlay">
+          <span class="card__kicker">Colección</span>
+          <span class="card__title">Locura</span>
+        </div>
+      </a>
+
+      <!-- Duplica más cards según necesites -->
+    </div>
+  </div>
+</section>
+
+<script>
+  // === Carrusel (JS mínimo para botones) ===
+  (function () {
+    const track = document.getElementById("collectionsTrack");
+    const buttons = document.querySelectorAll(".carousel-btn");
+
+    function getStep() {
+      // Avanza ~1 tarjeta (con gap incluido) según el tamaño visible
+      const card = track.querySelector(".card");
+      if (!card) return 320;
+      const styles = getComputedStyle(track);
+      const gap = parseFloat(styles.columnGap || styles.gap || "0") || 0;
+      return card.getBoundingClientRect().width + gap;
+    }
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const dir = Number(btn.dataset.dir || 1);
+        track.scrollBy({ left: dir * getStep(), behavior: "smooth" });
+      });
+    });
+  })();
+</script>
+  </footer>
 </html>
