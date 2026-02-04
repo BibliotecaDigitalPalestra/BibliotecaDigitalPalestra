@@ -1,125 +1,149 @@
+<!-- index2.html (HOME + carrusel) -->
 <!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Internet Organizado Total</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Internet Organizado Total — Inicio</title>
+  <link rel="stylesheet" href="styles-site.css" />
 </head>
+
 <body>
+  <!-- TOPBAR -->
   <header class="topbar">
-     <a href="index.html">
-    <img src="assets/Logo.jpg" alt="Internet Organizado Total" class="logo">
-         </a>
-    <div class="brand">
-      <div class="kicker">Biblioteca Multimedia</div>
-      <h1>Internet Organizado Total</h1>
+    <div class="topbar__wrap">
+      <a class="brand" href="index.html" aria-label="Ir al inicio">
+        <img class="brand__logo" src="assets/Logo.jpg" alt="Logo IOT" />
+        <div class="brand__text">
+          <div class="brand__kicker">Biblioteca Multimedia</div>
+          <div class="brand__name">Internet Organizado Total</div>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Navegación">
+        <a href="colecciones.html">Colecciones</a>
+        <a href="#autores">Autores</a>
+        <a href="#apoya">Apoya</a>
+      </nav>
+
+      <a class="btn btn--primary topbar__cta" href="colecciones.html">Ver colecciones</a>
     </div>
-    <nav class="nav">
-      <a href="colecciones.html">Colecciones</a>
-      <a href="autores.html">Autores</a>
-      <a href="apoya.html">Apoya</a>
-    </nav>
   </header>
 
-  <main class="wrap">
-    <section class="hero">
-      <h2>Acceso abierto a patrimonio y lectura</h2>
-      <p>Catálogo curado con enlaces de lectura y resguardo en Internet Archive.</p>
-      <div class="actions">
-        <a class="btn" href="colecciones.html">Ver colecciones</a>
-        <a class="btn secondary" href="apoya.html">Apoyar el proyecto</a>
+  <!-- HERO -->
+  <main class="page">
+    <section class="wrap hero hero--light">
+      <div class="hero__content">
+        <h1 class="hero__title">Acceso abierto a patrimonio y lectura</h1>
+        <p class="hero__subtitle">
+          Catálogo curado con enlaces de lectura y resguardo en Internet Archive.
+        </p>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="colecciones.html">Ver colecciones</a>
+          <a class="btn btn--ghost" href="#apoya">Apoyar el proyecto</a>
+        </div>
       </div>
     </section>
+
+    <!-- CARRUSEL (colecciones destacadas) -->
+    <section class="collections" aria-label="Colecciones destacadas">
+      <div class="collections__header">
+        <h2 class="collections__title">Colecciones</h2>
+        <div class="collections__controls">
+          <button class="carousel-btn" type="button" data-dir="-1" aria-label="Anterior">‹</button>
+          <button class="carousel-btn" type="button" data-dir="1" aria-label="Siguiente">›</button>
+        </div>
+      </div>
+
+      <div class="carousel">
+        <div class="carousel__track" id="collectionsTrack">
+          <!-- Reemplaza src/href por tus páginas reales -->
+          <a class="card" href="colecciones.html#guia" aria-label="Colección Guía de uso">
+            <img class="card__img" src="img/coleccion-guia.jpg" alt="Guía de uso" loading="lazy" />
+            <div class="card__overlay">
+              <span class="card__kicker">Colección</span>
+              <span class="card__title">Guía de uso</span>
+            </div>
+          </a>
+
+          <a class="card" href="colecciones.html#misterio" aria-label="Colección Libros de Misterio">
+            <img class="card__img" src="img/coleccion-misterio.jpg" alt="Libros de Misterio" loading="lazy" />
+            <div class="card__overlay">
+              <span class="card__kicker">Colección</span>
+              <span class="card__title">Libros de Misterio</span>
+            </div>
+          </a>
+
+          <a class="card" href="colecciones.html#musica" aria-label="Colección Música y Audio">
+            <img class="card__img" src="img/coleccion-musica.jpg" alt="Música y Audio" loading="lazy" />
+            <div class="card__overlay">
+              <span class="card__kicker">Colección</span>
+              <span class="card__title">Música y Audio</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN AUTORES -->
+    <section class="wrap section" id="autores">
+      <h2 class="section__title">Autores</h2>
+      <p class="section__text">Añade aquí perfiles, fuentes o curadores y cómo contribuyen al catálogo.</p>
+    </section>
+
+    <!-- SECCIÓN APOYA -->
+    <section class="wrap section" id="apoya">
+      <h2 class="section__title">Apoya el proyecto</h2>
+      <p class="section__text">
+        Donación voluntaria, suscripción o acceso a archivos selectos. Puedes explicar beneficios y destino del apoyo.
+      </p>
+      <div class="hero__actions" style="margin-top:14px;">
+        <a class="btn btn--primary" href="#">Donar</a>
+        <a class="btn btn--ghost" href="#">Suscripción</a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="wrap footer__grid">
+        <div class="footer__card">
+          <strong>Contacto / Créditos</strong>
+          <p class="footer__text">Redes, correo, licencias, fuentes.</p>
+        </div>
+        <div class="footer__card">
+          <strong>Patrocinadores</strong>
+          <div class="pills" aria-label="Patrocinadores">
+            <span class="pill">Sponsor 1</span>
+            <span class="pill">Sponsor 2</span>
+            <span class="pill">Sponsor 3</span>
+          </div>
+        </div>
+      </div>
+    </footer>
   </main>
-</body>
-  <footer>
-    <!-- === Carrusel de Colecciones (HTML) === -->
-<section class="collections" aria-label="Colecciones">
-  <div class="collections__header">
-    <h2 class="collections__title">Colecciones</h2>
 
-    <div class="collections__controls">
-      <button class="carousel-btn" type="button" data-dir="-1" aria-label="Anterior">
-        ‹
-      </button>
-      <button class="carousel-btn" type="button" data-dir="1" aria-label="Siguiente">
-        ›
-      </button>
-    </div>
-  </div>
+  <script>
+    // Botones del carrusel
+    (function () {
+      const track = document.getElementById("collectionsTrack");
+      const buttons = document.querySelectorAll(".carousel-btn");
 
-  <div class="carousel" role="region" aria-roledescription="carrusel">
-    <div class="carousel__track" id="collectionsTrack">
-      <!-- Card 1 -->
-      <a class="card" href="#" aria-label="Ir a Guía de uso">
-        <img
-          class="card__img"
-          src="img/coleccion-guia.jpg"
-          alt="Guía de uso"
-          loading="lazy"
-        />
-        <div class="card__overlay">
-          <span class="card__kicker">Colección</span>
-          <span class="card__title">Guía de uso</span>
-        </div>
-      </a>
+      function getStep() {
+        const card = track.querySelector(".card");
+        if (!card) return 320;
+        const styles = getComputedStyle(track);
+        const gap = parseFloat(styles.columnGap || styles.gap || "0") || 0;
+        return card.getBoundingClientRect().width + gap;
+      }
 
-      <!-- Card 2 -->
-      <a class="card" href="#" aria-label="Ir a Libros de Misterio">
-        <img
-          class="card__img"
-          src="img/coleccion-misterio.jpg"
-          alt="Libros de Misterio"
-          loading="lazy"
-        />
-        <div class="card__overlay">
-          <span class="card__kicker">Colección</span>
-          <span class="card__title">Libros de Misterio</span>
-        </div>
-      </a>
-
-      <!-- Card 3 -->
-      <a class="card" href="#" aria-label="Ir a Colección X">
-        <img
-          class="card__img"
-          src="img/coleccion-3.jpg"
-          alt="Colección X"
-          loading="lazy"
-        />
-        <div class="card__overlay">
-          <span class="card__kicker">Colección</span>
-          <span class="card__title">Locura</span>
-        </div>
-      </a>
-
-      <!-- Duplica más cards según necesites -->
-    </div>
-  </div>
-</section>
-
-<script>
-  // === Carrusel (JS mínimo para botones) ===
-  (function () {
-    const track = document.getElementById("collectionsTrack");
-    const buttons = document.querySelectorAll(".carousel-btn");
-
-    function getStep() {
-      // Avanza ~1 tarjeta (con gap incluido) según el tamaño visible
-      const card = track.querySelector(".card");
-      if (!card) return 320;
-      const styles = getComputedStyle(track);
-      const gap = parseFloat(styles.columnGap || styles.gap || "0") || 0;
-      return card.getBoundingClientRect().width + gap;
-    }
-
-    buttons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const dir = Number(btn.dataset.dir || 1);
-        track.scrollBy({ left: dir * getStep(), behavior: "smooth" });
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const dir = Number(btn.dataset.dir || 1);
+          track.scrollBy({ left: dir * getStep(), behavior: "smooth" });
+        });
       });
-    });
-  })();
-</script>
-  </footer>
+    })();
+  </script>
+</body>
 </html>
