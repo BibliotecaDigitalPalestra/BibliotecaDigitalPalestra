@@ -1,4 +1,4 @@
-/* style-sites.css */
+/* styles-site.css — CORREGIDO + HARDENED PARA GITHUB PAGES */
 :root{
   --max: 1100px;
   --padX: 20px;
@@ -28,6 +28,9 @@ body{
   color: var(--ink);
   background: var(--bg);
 }
+
+/* Evita que imágenes sin clase “rompan” el layout */
+img{ max-width: 100%; height: auto; display: block; }
 
 .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 var(--padX); }
 .page{ padding: 88px 0 48px; }
@@ -129,7 +132,7 @@ body{
 }
 .btn--ghost:hover{ transform: translateY(-1px); }
 
-/* HERO (index2) */
+/* HERO */
 .hero{
   border: 1px solid var(--line);
   border-radius: 22px;
@@ -138,6 +141,7 @@ body{
   padding: 26px;
   margin-top: 18px;
 }
+.hero__content{ max-width: 860px; margin: 0 auto; }
 .hero__title{
   margin: 0 0 10px;
   font-size: clamp(24px, 3vw, 40px);
@@ -178,6 +182,7 @@ body{
   font-weight: 900;
 }
 .collections__controls{ display: flex; gap: 10px; }
+
 .carousel-btn{
   width: 40px;
   height: 34px;
@@ -197,7 +202,9 @@ body{
   border-color: rgba(255,255,255,.28);
   transform: translateY(-1px);
 }
+
 .carousel{ max-width: var(--max); margin: 0 auto; padding: 0 var(--padX); }
+
 .carousel__track{
   display: grid;
   grid-auto-flow: column;
@@ -207,7 +214,17 @@ body{
   padding: 10px 6px 18px;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,.25) transparent;
 }
+.carousel__track::-webkit-scrollbar{ height: 10px; }
+.carousel__track::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,.22);
+  border-radius: 999px;
+}
+.carousel__track::-webkit-scrollbar-track{ background: transparent; }
+
 .card{
   position: relative;
   display: block;
@@ -219,9 +236,20 @@ body{
   text-decoration: none;
   color: inherit;
   background: rgba(255,255,255,.04);
+  outline: none;
 }
-.card__img{ width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); transition: transform 220ms ease; }
+.card__img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 220ms ease;
+}
 .card:hover .card__img{ transform: scale(1.08); }
+.card:focus-visible{
+  box-shadow: 0 0 0 3px rgba(130, 190, 255, 0.55), 0 10px 30px rgba(0,0,0,.25);
+}
+
 .card__overlay{
   position: absolute;
   inset: 0;
@@ -243,7 +271,7 @@ body{
   font-weight: 900;
 }
 
-/* SECCIONES (Autores/Apoya) */
+/* SECCIONES */
 .section{
   margin-top: 18px;
   border: 1px solid var(--line);
@@ -281,8 +309,4 @@ body{
 .pill{
   padding: 8px 10px;
   border-radius: 999px;
-  background: rgba(11,92,255,.08);
-  border: 1px solid rgba(11,92,255,.14);
-  font-size: 13px;
-  color: rgba(11,18,32,.78);
-}
+  background: rgba(11
