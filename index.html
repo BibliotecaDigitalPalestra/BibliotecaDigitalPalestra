@@ -1,50 +1,51 @@
-<!-- index.html (HOME) -->
 <!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Internet Organizado Total</title>
-  <link rel="stylesheet" href="styles-home.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-  <!-- Fondo opcional (parallax) -->
+  <!-- Fondo opcional con parallax (puedes activarlo con imagen luego) -->
   <div class="bg-layer" id="bgLayer" aria-hidden="true"></div>
 
+  <!-- HERO centrado (home) -->
   <main class="home">
-    <!-- HERO -->
-    <section class="wrap hero" aria-label="Portada">
-      <img class="hero__logo" src="assets/Logo.jpg" alt="Logo de Internet Organizado Total" />
+    <section class="hero-home wrap" aria-label="Portada">
+      <img class="hero-logo" src="assets/Logo.jpg" alt="Logo de Internet Organizado Total" />
 
-      <h1 class="hero__title">Internet Organizado Total</h1>
-      <p class="hero__subtitle">Catálogo de archivos preservados, clasificados y curados</p>
+      <h1 class="hero-title">Internet Organizado Total</h1>
+      <p class="hero-subtitle">Catálogo de archivos preservados, clasificados y curados</p>
 
-      <a class="btn btn--primary" href="index 2.html">Ver colecciones</a>
+      <a class="btn hero-cta" href="index 2.html">Ver colecciones</a>
     </section>
 
-    <!-- RESUMEN -->
+    <!-- Sección “sobre” ya sobre fondo oscuro (sin franja blanca) -->
     <section class="wrap">
-      <section class="glass" aria-label="Resumen del sitio">
-        <h2 class="glass__title">¿De qué trata este sitio?</h2>
-        <p class="glass__text">
+      <section class="glass-card" aria-label="Resumen del sitio">
+        <h2>¿De qué trata este sitio?</h2>
+        <p>
           Este catálogo reúne colecciones organizadas de contenido preservado y curado: guías, libros, recursos y materiales
           clasificados por temas para encontrarlos rápido y mantenerlos accesibles a largo plazo.
         </p>
       </section>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="wrap footer" aria-label="Información final">
-      <div class="footer__grid">
-        <div class="footer__card">
+    <!-- Footer final -->
+    <footer class="wrap site-footer" aria-label="Información final">
+      <div class="footer-grid">
+        <div class="footer-card">
           <strong>Contacto / Créditos</strong>
-          <p class="footer__text">Coloca aquí tus redes, correo, o un texto de licencia.</p>
+          <div style="margin-top:8px; opacity:.9;">
+            Puedes colocar aquí tus redes, correo, o un pequeño texto de licencia.
+          </div>
         </div>
 
-        <div class="footer__card">
+        <div class="footer-card">
           <strong>Patrocinadores</strong>
-          <div class="pills" aria-label="Lista de patrocinadores">
+          <div class="sponsors" aria-label="Lista de patrocinadores">
             <span class="pill">Sponsor 1</span>
             <span class="pill">Sponsor 2</span>
             <span class="pill">Sponsor 3</span>
@@ -55,13 +56,16 @@
   </main>
 
   <script>
-    // Parallax + opacidad del fondo (si activas imagen)
     (function () {
       const bg = document.getElementById("bgLayer");
 
       function onScroll() {
         const y = window.scrollY || 0;
+
+        // Parallax suave
         bg.style.transform = "translateY(" + (y * 0.08) + "px)";
+
+        // Opacidad (si luego activas imagen)
         const o = Math.max(0, Math.min(1, (y - 40) / 450));
         bg.style.opacity = String(o * 0.25);
       }
