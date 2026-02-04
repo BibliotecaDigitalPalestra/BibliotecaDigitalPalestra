@@ -1,262 +1,200 @@
-:root { --bg:#f5fafc; --ink:#1b232b; --muted:#5b6774; --line:#e3edf2; }
+/* styles.css */
+
+/* =========================
+   BASE (tu CSS) + ajustes
+   ========================= */
+:root{
+  --bg:#f5fafc;                /* (ya no se usa como fondo principal de home) */
+  --ink:#1b232b;
+  --muted:#5b6774;
+  --line:#e3edf2;
+
+  /* Nuevos tokens para home oscuro */
+  --home-top:#0c2b55;
+  --home-bottom:#081f3d;
+
+  --home-text:#eaf2ff;
+  --home-muted:rgba(234,242,255,.78);
+
+  --cta:#0b5cff;
+  --cta-hover:#094fda;
+}
+
 *{ box-sizing:border-box; }
-body{ margin:0; font-family:system-ui, Arial, sans-serif; color:var(--ink); background:var(--bg); }
-.wrap{ max-width:980px; margin:0 auto; padding:28px 20px 80px; }
-
-.topbar{ display:flex; gap:16px; align-items:center; padding:14px 20px; background:#fff; border-bottom:1px solid var(--line); }
-.logo{ width:72px; height:auto; }
-.brand .kicker{ font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
-.brand h1{ margin:2px 0 0; font-size:22px; }
-.nav{ margin-left:auto; display:flex; gap:16px; }
-.nav a{ color:var(--muted); text-decoration:none; font-weight:600; }
-.nav a:hover{ text-decoration:underline; }
-
-.hero{ background:#fff; border:1px solid var(--line); border-radius:18px; padding:28px; }
-.hero h2{ margin:0 0 10px; font-size:34px; }
-.hero p{ margin:0 0 18px; color:var(--muted); line-height:1.5; }
-.actions{ display:flex; gap:12px; flex-wrap:wrap; }
-.btn{ display:inline-block; padding:12px 16px; border-radius:12px; background:#19566d; color:#fff; text-decoration:none; font-weight:700; }
-.btn.secondary{ background:#fff; color:#19566d; border:1px solid var(--line); }
-/* === Grid de colecciones (cards con fondo + hover) === */
-.collections-grid{
-  display:grid;
-  grid-template-columns:repeat(3, minmax(0, 1fr));
-  gap:16px;
-  margin-top:18px;
-}
-
-.collection-card{
-  position:relative;
-  display:block;
-  min-height:180px;
-  border-radius:18px;
-  overflow:hidden;
-  text-decoration:none;
-  border:1px solid var(--line);
-  background:
-  linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.45)),
-  var(--bg);
-  background-size:cover;
-  background-position:center;
-  transform:translateZ(0);
-}
-
-/* “Oscurecer” extra en hover usando overlay */
-.collection-card::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.18);
-  opacity:0;
-  transition:opacity .18s ease;
-}
-
-.collection-title{
-  position:absolute;
-  left:16px;
-  right:16px;
-  bottom:16px;
-  z-index:2;
-
-  display:inline-block;
-  padding:10px 12px;
-  border-radius:14px;
-
-  color:#fff;
-  font-weight:800;
-  letter-spacing:.2px;
-  font-size:18px;
-
-  background:rgba(0,0,0,.28);
-  border:1px solid rgba(255,255,255,.14);
-  backdrop-filter:blur(6px);
-
-  transition:
-    transform .18s ease,
-    background .18s ease,
-    border-color .18s ease;
-}
-
-/* Hover: fondo más oscuro y texto más “presente” */
-.collection-card:hover::after{
-  opacity:1;
-}
-
-.collection-card:hover .collection-title{
-  transform:translateY(-2px);
-  background:rgba(0,0,0,.45);
-  border-color:rgba(255,255,255,.22);
-}
-
-/* Accesibilidad: foco con teclado */
-.collection-card:focus-visible{
-  outline:3px solid rgba(25,86,109,.55);
-  outline-offset:3px;
-}
-
-/* Responsive */
-@media (max-width: 980px){
-  .collections-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
-}
-@media (max-width: 560px){
-  .collections-grid{ grid-template-columns:1fr; }
-  .collection-card{ min-height:160px; }
-}
-/* === Carrusel de Colecciones (CSS) === */
-:root {
-  --bg: #071a2a;
-  --card-radius: 20px;
-  --gap: 20px;
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-}
-
-.collections {
-  padding: 28px 18px;
+html, body{ height:100%; }
+body{
+  margin:0;
+  font-family:system-ui, Arial, sans-serif;
+  color:var(--ink);
   background: var(--bg);
-  color: #eaf2ff;
 }
 
-.collections__header {
-  max-width: 1200px;
-  margin: 0 auto 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
+/* Contenedor */
+.wrap{ max-width:980px; margin:0 auto; padding:28px 20px; }
 
-.collections__title {
-  margin: 0;
-  font-size: clamp(18px, 2vw, 24px);
-  font-weight: 700;
-  letter-spacing: 0.2px;
-}
-
-.collections__controls {
-  display: flex;
-  gap: 10px;
-}
-
-.carousel-btn {
-  width: 40px;
-  height: 30Px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  font-size: 22px;
-  line-height: 1;
-  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
-}
-
-.carousel-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.28);
-  transform: translateY(-1px);
-}
-
-.carousel-btn:active {
-  transform: translateY(0);
-}
-
-.carousel {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Track scroll horizontal con “snap” (suave y sin librerías) */
-.carousel__track {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(260px, 1fr);
-  gap: var(--gap);
-
-  overflow-x: auto;
-  padding: 10px 6px 18px;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-
-  /* Oculta scrollbar (sin romper accesibilidad) */
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
-}
-
-.carousel__track::-webkit-scrollbar {
-  height: 10px;
-}
-.carousel__track::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.22);
-  border-radius: 999px;
-}
-.carousel__track::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.card {
-  position: relative;
-  display: block;
-  height: clamp(200px, 22vw, 300px);
-  border-radius: var(--card-radius);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  scroll-snap-align: start;
-  text-decoration: none;
-  color: inherit;
-  background: rgba(255, 255, 255, 0.04);
-  outline: none;
-}
-
-.card__img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1.02);
-  transition: transform 220ms ease;
-}
-
-.card__overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 16px;
-  gap: 4px;
-
+/* =========================
+   HOME: fondo oscuro continuo (sin franja blanca)
+   ========================= */
+.home{
+  min-height: 200vh; /* solo para probar el degradado; quítalo cuando ya tengas más contenido */
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0) 45%,
-    rgba(0, 0, 0, 0.55) 100%
+    var(--home-top) 0%,
+    var(--home-top) 45%,
+    var(--home-bottom) 100%
   );
+  color: var(--home-text);
 }
 
-.card__kicker {
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  opacity: 0.85;
+/* Fondo opcional con parallax */
+.bg-layer{
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  /* Activa cuando tengas imagen:
+     background-image:url("assets/fondo.jpg");
+  */
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transform: translateY(0px);
+  transition: opacity 200ms ease;
 }
 
-.card__title {
-  font-size: clamp(16px, 2vw, 22px);
-  font-weight: 800;
-  letter-spacing: 0.4px;
+/* =========================
+   HERO centrado
+   ========================= */
+.hero-home{
+  min-height: calc(100vh - 56px); /* deja algo de aire arriba/abajo */
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding-top: 56px;
+  padding-bottom: 24px;
 }
 
-.card:hover .card__img {
-  transform: scale(1.08);
+.hero-logo{
+  width: min(280px, 55vw);
+  height: auto;
+  display: block;
+  margin: 0 auto 16px;
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,.25));
 }
 
-.card:focus-visible {
-  box-shadow: 0 0 0 3px rgba(130, 190, 255, 0.55), var(--shadow);
+.hero-title{
+  margin: 0 0 10px;
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: -0.02em;
+  color: #fff;
 }
 
-/* Responsive: en pantallas grandes, cards más “anchas” */
-@media (min-width: 900px) {
-  .carousel__track {
-    grid-auto-columns: minmax(340px, 1fr);
-  }
+.hero-subtitle{
+  margin: 0 auto 22px;
+  max-width: 52ch;
+  color: var(--home-muted);
+  font-size: clamp(14px, 1.6vw, 18px);
+}
+
+/* CTA usa tu .btn (se mantiene), pero la afinamos para home */
+.btn{
+  display:inline-block;
+  padding:12px 16px;
+  border-radius:999px;
+  background: var(--cta);
+  color:#fff;
+  text-decoration:none;
+  font-weight:800;
+  box-shadow: 0 16px 30px rgba(11,92,255,.25);
+  transition: transform .12s ease, background .12s ease, box-shadow .12s ease;
+}
+.btn:hover{
+  background: var(--cta-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 20px 36px rgba(11,92,255,.28);
+}
+.btn:active{ transform: translateY(0); }
+
+.hero-cta{ margin-top: 2px; }
+
+/* =========================
+   Card “glass” para sección sobre (legible en fondo oscuro)
+   ========================= */
+.glass-card{
+  margin-top: 24px;
+  border-radius: 20px;
+  padding: 22px 20px;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 18px 44px rgba(0,0,0,.25);
+}
+
+.glass-card h2{
+  margin:0 0 10px;
+  font-size: clamp(18px, 2.2vw, 24px);
+  color:#fff;
+}
+.glass-card p{
+  margin:0;
+  color: rgba(234,242,255,.86);
+  line-height: 1.55;
+}
+
+/* =========================
+   Footer (reutiliza tu footer, adaptado a home)
+   ========================= */
+.site-footer{
+  padding-top: 12px;
+  padding-bottom: 64px;
+}
+
+footer{
+  color: rgba(255,255,255,.82);
+}
+
+.footer-card{
+  border-radius: 18px;
+  padding: 16px 18px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.16);
+}
+
+.footer-grid{
+  display:grid;
+  gap:14px;
+  grid-template-columns:1fr;
+}
+@media (min-width: 820px){
+  .footer-grid{ grid-template-columns: 1.2fr .8fr; }
+}
+
+.sponsors{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:10px;
+}
+.pill{
+  padding:8px 10px;
+  border-radius:999px;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.14);
+  font-size: 13px;
+  color: rgba(255,255,255,.9);
+}
+
+/* =========================
+   (Tu CSS existente para colecciones/carrusel puede quedarse en index 2.html)
+   Si lo usas aquí también, no pasa nada, pero evita duplicar variables :root.
+   ========================= */
+
+
+/* =========================
+   RESPONSIVE básico
+   ========================= */
+@media (max-width: 560px){
+  .wrap{ padding:22px 16px; }
+  .hero-logo{ width: min(240px, 70vw); }
 }
