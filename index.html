@@ -4,17 +4,257 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Internet Organizado Total</title>
+
   <style>
-    body { font-family: system-ui, Arial, sans-serif; margin: 40px; line-height: 1.5; }
-    .card { max-width: 860px; }
-    a { text-decoration: none; }
+    :root{
+      /* Personaliza rápido */
+      --max: 980px;
+      --padX: 24px;
+      --padY: 56px;
+
+      --bg-top: #ffffff;
+      --bg-bottom: #0c2b55;   /* azul al bajar */
+      --text: #0b1220;
+      --muted: rgba(11,18,32,.75);
+
+      --btn-bg: #0b5cff;
+      --btn-bg-hover: #094fda;
+      --btn-text: #ffffff;
+
+      --card-radius: 24px;
+      --shadow: 0 16px 40px rgba(0,0,0,.10);
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.5;
+
+      /* Fondo blanco arriba + transición a azul abajo */
+      background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-top) 35%, var(--bg-bottom) 100%);
+      min-height: 200vh; /* para ver el cambio al hacer scroll */
+    }
+
+    /* Fondo “futuro”: imagen opcional con opacidad y parallax suave */
+    .bg-layer{
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+
+      /* Cambia/activa cuando tengas imagen:
+         background-image: url("img/fondo.jpg");
+      */
+      background-size: cover;
+      background-position: center;
+      opacity: 0;            /* empieza apagado */
+      transform: translateY(0px);
+      transition: opacity 200ms ease;
+    }
+
+    /* Layout */
+    .page{
+      padding: var(--padY) var(--padX);
+    }
+
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    /* Hero centrado */
+    .hero{
+      min-height: calc(100vh - (var(--padY) * 2));
+      display: grid;
+      place-items: center;
+      text-align: center;
+    }
+
+    .hero__inner{
+      width: 100%;
+      max-width: 820px;
+      padding: 28px 22px;
+    }
+
+    .logo{
+      width: min(220px, 40vw);
+      height: auto;
+      display: block;
+      margin: 0 auto 18px;
+    }
+
+    h1{
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle{
+      margin: 0 auto 22px;
+      max-width: 52ch;
+      color: var(--muted);
+      font-size: clamp(14px, 1.6vw, 18px);
+    }
+
+    .actions{
+      display: flex;
+      justify-content: center;
+    }
+
+    .btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      font-weight: 650;
+      text-decoration: none;
+      box-shadow: 0 12px 24px rgba(11,92,255,.22);
+      transform: translateY(0);
+      transition: transform 120ms ease, background 120ms ease, box-shadow 120ms ease;
+    }
+    .btn:hover{
+      background: var(--btn-bg-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 16px 30px rgba(11,92,255,.26);
+    }
+    .btn:active{ transform: translateY(0); }
+
+    /* Secciones debajo */
+    .section{
+      margin-top: 34px;
+      padding: 26px 22px;
+      border-radius: var(--card-radius);
+      background: rgba(255,255,255,.78);
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow);
+    }
+
+    .section h2{
+      margin: 0 0 10px;
+      font-size: clamp(18px, 2.2vw, 24px);
+    }
+    .section p{
+      margin: 0;
+      color: rgba(11,18,32,.85);
+    }
+
+    /* Footer / barra final */
+    footer{
+      margin-top: 26px;
+      padding: 18px 0 44px;
+      color: rgba(255,255,255,.82);
+    }
+    .footer-card{
+      border-radius: 18px;
+      padding: 16px 18px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.16);
+    }
+    .footer-grid{
+      display: grid;
+      gap: 14px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 820px){
+      .footer-grid{ grid-template-columns: 1.2fr .8fr; }
+    }
+
+    .sponsors{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .pill{
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.14);
+      font-size: 13px;
+      color: rgba(255,255,255,.9);
+    }
   </style>
 </head>
+
 <body>
-  <div class="card">
-    <h1>Internet Organizado Total</h1>
-    <p>Catálogo de archivos preservados, clasificados y curados</p>
-    <p><a href="index 2.html">Ver colecciones</a></p>
-  </div>
+  <!-- Fondo opcional: activa con imagen cuando quieras -->
+  <div class="bg-layer" id="bgLayer" aria-hidden="true"></div>
+
+  <main class="page">
+    <div class="wrap">
+      <!-- HERO -->
+      <section class="hero" aria-label="Portada">
+        <div class="hero__inner">
+          <!-- LOGO: cambia el src por tu archivo (ej: img/logo.png) -->
+          <img class="logo" src="img/logo.png" alt="Logo de Internet Organizado Total" />
+
+          <h1>Internet Organizado Total</h1>
+          <p class="subtitle">Catálogo de archivos preservados, clasificados y curados</p>
+
+          <div class="actions">
+            <a class="btn" href="index 2.html">Ver colecciones</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESUMEN / ABOUT -->
+      <section class="section" aria-label="Resumen del sitio">
+        <h2>¿De qué trata este sitio?</h2>
+        <p>
+          Este catálogo reúne colecciones organizadas de contenido preservado y curado: guías, libros, recursos y materiales
+          clasificados por temas para encontrarlos rápido y mantenerlos accesibles a largo plazo.
+        </p>
+      </section>
+
+      <!-- FOOTER -->
+      <footer aria-label="Información final">
+        <div class="footer-grid">
+          <div class="footer-card">
+            <strong>Contacto / Créditos</strong>
+            <div style="margin-top:8px; opacity:.9;">
+              Puedes colocar aquí tus redes, correo, o un pequeño texto de licencia.
+            </div>
+          </div>
+
+          <div class="footer-card">
+            <strong>Patrocinadores</strong>
+            <div class="sponsors" aria-label="Lista de patrocinadores">
+              <span class="pill">Sponsor 1</span>
+              <span class="pill">Sponsor 2</span>
+              <span class="pill">Sponsor 3</span>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    // Parallax y “fondo activable” (opcional)
+    (function () {
+      const bg = document.getElementById("bgLayer");
+
+      function onScroll() {
+        const y = window.scrollY || 0;
+
+        // Parallax: mueve el fondo un poco
+        bg.style.transform = "translateY(" + (y * 0.08) + "px)";
+
+        // Opacidad del fondo (si luego pones imagen):
+        // Empieza a aparecer tras 40px de scroll y sube suavemente
+        const o = Math.max(0, Math.min(1, (y - 40) / 450));
+        bg.style.opacity = String(o * 0.25); // 0.25 = intensidad (ajústala)
+      }
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
 </body>
 </html>
